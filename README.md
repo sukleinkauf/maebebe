@@ -20,6 +20,6 @@ Para gerar builds para Android (APK):
   - diretorio-android-sdk/emulator
   
 Para verificar se está tudo certo para gerar a APK rodar o comando "ionic cordova requirements", que vai verificar se está tudo instalado no computador
-Gerar a APK: ionic cordova build android 
-Rodar no emulador: ionic cordova emulate android (emulador deve estar aberto no Android Studio)
-Executar no celular pela USB: ionic cordova run android
+- Gerar a APK: ionic cordova build android 
+- Rodar no emulador: ionic cordova emulate android (emulador deve estar aberto no Android Studio)
+- Executar no celular pela USB: ionic cordova run android
