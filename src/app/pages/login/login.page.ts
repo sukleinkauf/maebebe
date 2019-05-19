@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,30 +13,27 @@ export class LoginPage {
   public password = "123";
 
   constructor(
-    private http: HttpClient, 
-    private db: Storage, 
     private router: Router,
+    private loginService: LoginService,
     public toast: ToastController
   ) { }
 
+  ionViewWillEnter() {
+    if(this.loginService.isAuthenticated()) {
+      this.router.navigateByUrl("/home")
+    }
+  }
+
   login() {
-    let form = new FormData()
-    form.append("username", this.username)
-    form.append("password", this.password)
-
-    let promise = this.http.post("http://ceted.feevale.br/maebebe/API/index.php/sign/in", form).toPromise()
-    
-    promise.then((result: any) => {
-      if(result.errors) {
+    this.loginService.login(this.username, this.password).then((user) => {
       
-        this.toast.create({ message: 'Ocorreu um erro no login.', duration: 2000 })
-                  .then((toast) => toast.present());
-      
-      } else {
-        this.db.set('token', result.authorization)
-        this.db.set('user', result.userData).then(() => { this.router.navigateByUrl('home')})
-      }
+      this.router.navigateByUrl('home')
 
+    }).catch((error) => {
+      
+      this.toast.create({ message: 'Ocorreu um erro no login.', duration: 2000 })
+                .then((toast) => toast.present());
+                
     })
   }
 }

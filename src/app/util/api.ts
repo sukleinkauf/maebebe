@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http/http.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class API {
     ]
 
     constructor(
-        private http: HttpClient
+        private http: HttpService
     ) { }
 
     getUrls() {
@@ -24,11 +25,11 @@ export class API {
     }
 
     async fazerRequisicao(url: { nome: string; rota: string; metodo: string }, token: string) {
-        let parametros = { headers: new HttpHeaders({'Authorization': token}) }
+        let headers = new HttpHeaders({'Authorization': token})
 
         if(url.metodo == 'GET')
-            return await this.http.get(this.base + url.rota, parametros).toPromise()
+            return await this.http.get(this.base + url.rota, headers)
         if(url.metodo == 'POST')
-            return await this.http.post(this.base + url.rota, {}, parametros).toPromise()
+            return await this.http.post(this.base + url.rota, {}, headers)
     }
 }

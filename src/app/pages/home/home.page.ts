@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { API } from '../../util/api';
+import { LoginService } from '../../services/login/login.service';
+import { User } from 'src/app/services/login/user';
+import { ToastService } from 'src/app/services/helpers/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +15,16 @@ import { API } from '../../util/api';
 })
 export class HomePage implements OnInit {
 
-  private user;
-  private token;
+  public user: User;
   public retorno:any;
   
   url: any;
   listaUrls: { nome: string; rota: string; metodo: string }[];
 
   constructor(
-    private db: Storage, 
-    private http: HttpClient, 
+    private login: LoginService,
     private router: Router,
-    private toast: ToastController,
+    private toast: ToastService,
     private api: API
   ) {
 
@@ -31,40 +32,26 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.db.get('user').then((user) => { this.user = user })
-    this.db.get('token').then((token) => {
-      this.token = token 
-      this.salvarTipos()
+    this.login.getUser().then((user) => { 
+      this.user = user 
+      console.log(user)
     })
   }
 
   ngOnInit() {
   }
 
-  salvarTipos() {
-    let parametros = { headers: new HttpHeaders({'Authorization': this.token}) }
-    
-    let urls = this.api.getUrls()
-
-    // urls.forEach(item => {
-    //   this.http.get(item.url, parametros).toPromise().then((result: any) => {
-    //     this.db.set(item.nome, result.result)
-    //   })
-    // });
-  }
-
   sair() {
-    this.db.remove('user').then(() => {
-      this.user = null
+    this.login.logout().then(() => {
       this.router.navigateByUrl('login')
     })
   }
 
   fazerRequisicao() {
-    this.api.fazerRequisicao(this.url, this.token).then((retorno) => {
+    this.api.fazerRequisicao(this.url, this.user.token).then((retorno) => {
       this.retorno = retorno
     }).catch((error: HttpErrorResponse) => {
-      this.toast.create({ message: 'Ocorreu um erro: ' + error.statusText, duration: 3000 }).then((toast) => toast.present());
+      this.toast.present('Ocorreu um erro: ' + error.statusText);
     })
   }
 
