@@ -16,7 +16,7 @@ export class GlobalErrorHandler extends ErrorHandler {
 
       error.promise.catch((error) => {
         if(error instanceof RequestException){
-
+          console.log(error)
           this.alert.ok(error.getMessage(), 'Erro');
 
         }
