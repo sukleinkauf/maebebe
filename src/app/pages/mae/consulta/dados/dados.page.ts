@@ -11,7 +11,7 @@ export class DadosPage implements OnInit {
   constructor(private router: Router) { }
 
   voltar() {
-    this.router.navigateByUrl("")
+    this.router.navigateByUrl("/inicio")
   }
 
   ngOnInit() {

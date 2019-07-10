@@ -8,5 +8,17 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-input [(ngModel)]="busca" placeholder="Nome ou CPF" type="text" autofocus clearInput></ion-input>
+    </ion-item>
 
+    <ion-button expand="block" (click)="buscarMaes()">
+      Buscar
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    Conteúdo
+  </ion-card>
 </ion-content>

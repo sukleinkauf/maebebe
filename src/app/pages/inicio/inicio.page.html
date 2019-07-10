@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>inicio</ion-title>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="sair()" title="Sair">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-card>
+      <ion-item lines="none">
+        <ion-icon name="woman" slot="start" size="large"></ion-icon>
+        <ion-label>Mãe</ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="buscarMae()">
+              <ion-icon slot="start" name="search" size="large"></ion-icon>
+          </ion-button>
+          <ion-button color="primary" (click)="abrirCadastroMae()">
+            <ion-icon slot="start" name="add-circle" size="large"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card>
 
+    <ion-card>
+      <ion-item lines="none">
+        <ion-icon name="happy" slot="start" size="large"></ion-icon>
+        <ion-label>Bebê</ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="buscarBebe()">
+            <ion-icon slot="start" name="search" size="large"></ion-icon>
+          </ion-button>
+          <ion-button color="primary" (click)="abrirCadastroBebe()">
+            <ion-icon slot="start" name="add-circle" size="large"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card>
 </ion-content>

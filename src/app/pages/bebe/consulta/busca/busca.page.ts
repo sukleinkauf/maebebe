@@ -8,10 +8,16 @@ import { Router } from '@angular/router';
 })
 export class BuscaPage implements OnInit {
 
+  public busca: String = "";
+
   constructor(private router: Router) { }
 
   voltar() {
-    this.router.navigateByUrl("")
+    this.router.navigateByUrl("/inicio")
+  }
+
+  buscarBebes() {
+    alert('Buscando por ' + this.busca)
   }
 
   ngOnInit() {

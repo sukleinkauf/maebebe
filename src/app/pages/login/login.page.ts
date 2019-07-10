@@ -20,14 +20,14 @@ export class LoginPage {
 
   ionViewWillEnter() {
     if(this.loginService.isAuthenticated()) {
-      this.router.navigateByUrl("/home")
+      this.router.navigateByUrl("/inicio")
     }
   }
 
   login() {
     this.loginService.login(this.username, this.password).then((user) => {
       
-      this.router.navigateByUrl('home')
+      this.router.navigateByUrl('inicio')
 
     }).catch((error) => {
       
