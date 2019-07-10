@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class BuscaPage implements OnInit {
 
   public busca: String = "";
+  public bebes: Array<any> = [];
 
   constructor(private router: Router) { }
 
