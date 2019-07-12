@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.page.html',
-  styleUrls: ['./inicio.page.scss'],
+  selector: 'app-dados-residencia',
+  templateUrl: './dados-residencia.page.html',
+  styleUrls: ['./dados-residencia.page.scss'],
 })
-export class InicioPage implements OnInit {
+export class DadosResidenciaPage implements OnInit {
 
   public maeForm: FormGroup;
 
@@ -20,12 +20,12 @@ export class InicioPage implements OnInit {
   }
 
   voltar() {
-    this.router.navigateByUrl("/inicio")
+    this.router.navigateByUrl("/mae/cadastro/dados-pessoais")
   }
 
   salvar() {
     console.log(this.maeForm)
-    this.router.navigateByUrl("/mae/cadastro/dados-pessoais")
+    this.router.navigateByUrl("/mae/cadastro/outras-informacoes")
   }
 
   ngOnInit() {

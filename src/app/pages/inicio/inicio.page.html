@@ -15,7 +15,7 @@
         <ion-icon name="woman" slot="start" size="large"></ion-icon>
         <ion-label>Mãe</ion-label>
         <ion-buttons slot="end">
-          <ion-button color="primary" (click)="buscarMae()">
+          <ion-button color="primary" (click)="abrirBuscaMae()">
               <ion-icon slot="start" name="search" size="large"></ion-icon>
           </ion-button>
           <ion-button color="primary" (click)="abrirCadastroMae()">
@@ -30,10 +30,19 @@
         <ion-icon name="happy" slot="start" size="large"></ion-icon>
         <ion-label>Bebê</ion-label>
         <ion-buttons slot="end">
-          <ion-button color="primary" (click)="buscarBebe()">
+          <ion-button color="primary" (click)="abrirBuscaBebe()">
             <ion-icon slot="start" name="search" size="large"></ion-icon>
           </ion-button>
-          <ion-button color="primary" (click)="abrirCadastroBebe()">
+        </ion-buttons>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-icon name="happy" slot="start" size="large"></ion-icon>
+        <ion-label>Gestação</ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="abrirCadastroGestacao()">
             <ion-icon slot="start" name="add-circle" size="large"></ion-icon>
           </ion-button>
         </ion-buttons>

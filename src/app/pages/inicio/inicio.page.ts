@@ -18,16 +18,16 @@ export class InicioPage implements OnInit {
     this.router.navigateByUrl('/mae/cadastro')
   }
 
-  buscarMae() {
+  abrirBuscaMae() {
     this.router.navigateByUrl('/mae/consulta/busca');
   }
 
-  abrirCadastroBebe() {
-    this.router.navigateByUrl('/bebe/cadastro')
+  abrirBuscaBebe() {
+    this.router.navigateByUrl('/bebe/consulta/busca');
   }
 
-  buscarBebe() {
-    this.router.navigateByUrl('/bebe/consulta/busca');
+  abrirCadastroGestacao() {
+    this.router.navigateByUrl('/gestacao/cadastro/inicio');
   }
 
   sair() {
