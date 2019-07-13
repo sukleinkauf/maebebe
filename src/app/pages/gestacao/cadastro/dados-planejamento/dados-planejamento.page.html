@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Gestação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="gestacaoForm" (ngSubmit)="salvar()">
+    <ion-card>
+      <ion-item>
+        <ion-label>Gestação Planejada: </ion-label>
+        <ion-select formControlName="planejada" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaGestacaoPlanejada()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Se sim, como planejou?</ion-label>
+      </ion-item>
+      
+      <ion-card>
+        <ion-item>
+          <ion-label>Tipo de Planejamento Gestação:</ion-label>
+          <ion-select multiple="true" formControlName="planejamento_gestacao" placeholder="Selecione">
+            <ion-select-option *ngFor="let tipo of servico.listaTipoPlanejamentoGestacao()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>MAC utilizado antes da gestação:</ion-label>
+          <ion-select multiple="true" formControlName="mac_gestacao" placeholder="Selecione">
+            <ion-select-option *ngFor="let tipo of servico.listaTipoMAC()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Outro MAC utilizado antes da gestação:</ion-label>
+          <ion-input formControlName="mac_antes_gestacao"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Há quanto tempo?</ion-label>
+          <ion-select multiple="true" formControlName="id_tempo_mac" placeholder="Selecione">
+            <ion-select-option *ngFor="let tipo of servico.listaTempoMAC()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Quem orientou o uso?</ion-label>
+          <ion-input formControlName="mac_antes_gestacao_nome_orientador"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">MAC Observação:</ion-label>
+          <ion-input formControlName="mac_antes_gestacao_obs"></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <ion-button expand="block" color="primary" type="submit" [disabled]="gestacaoForm.invalid">
+        Próximo
+      </ion-button>
+    </ion-card>
+  </form>
+</ion-content>

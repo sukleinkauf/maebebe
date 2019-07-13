@@ -27,7 +27,7 @@ export class InicioPage implements OnInit {
   }
 
   abrirCadastroGestacao() {
-    this.router.navigateByUrl('/gestacao/cadastro/inicio');
+    this.router.navigateByUrl('/gestacao/cadastro');
   }
 
   sair() {

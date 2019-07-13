@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Gestação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="gestacaoForm" (ngSubmit)="salvar()">        
+      <ion-card>
+        <ion-item>
+          <ion-label>Exames realizados no Pré-Natal:</ion-label>
+          <ion-select multiple="true" formControlName="exame_prenatal" placeholder="Selecione">
+            <ion-select-option *ngFor="let tipo of servico.listaTipoExamePreNatal()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Outros exames realizados no PN:</ion-label>
+          <ion-input formControlName="exame_prenatal_obs"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">IG no início do pré-natal:</ion-label>
+            <ion-input formControlName="ig_inicio_pre_natal"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Peso Pré-gestacional:</ion-label>
+          <ion-input formControlName="peso_pre_gestacional"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Altura:</ion-label>
+          <ion-input formControlName="altura_pre_gestacional"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">IMC:</ion-label>
+          <ion-input formControlName="imc_pre_gestacional"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">IG ao iniciar no projeto:</ion-label>
+          <ion-input formControlName="ig_inicio_projeto"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Peso início projeto:</ion-label>
+          <ion-input formControlName="peso_inicio_projeto"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">IMC início do projeto:</ion-label>
+          <ion-input formControlName="imc_inicio_projeto"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" color="primary" type="submit" [disabled]="gestacaoForm.invalid">
+          Próximo
+        </ion-button>
+      </ion-card>
+    </form>
+  </ion-content>
+  
