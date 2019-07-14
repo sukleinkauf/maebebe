@@ -13,7 +13,7 @@
         <ion-item>
           <ion-label>Exames realizados no Pré-Natal:</ion-label>
           <ion-select multiple="true" formControlName="exame_prenatal" placeholder="Selecione">
-            <ion-select-option *ngFor="let tipo of servico.listaTipoExamePreNatal()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+            <ion-select-option *ngFor="let tipo of servico.listaTipoExamePreNatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>

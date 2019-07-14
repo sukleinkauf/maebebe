@@ -13,7 +13,7 @@
       <ion-item>
         <ion-label>Gestação Planejada: </ion-label>
         <ion-select formControlName="planejada" placeholder="Selecione">
-          <ion-select-option *ngFor="let tipo of servico.listaGestacaoPlanejada()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+          <ion-select-option *ngFor="let tipo of servico.listaGestacaoPlanejada" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -25,13 +25,13 @@
         <ion-item>
           <ion-label>Tipo de Planejamento Gestação:</ion-label>
           <ion-select multiple="true" formControlName="planejamento_gestacao" placeholder="Selecione">
-            <ion-select-option *ngFor="let tipo of servico.listaTipoPlanejamentoGestacao()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+            <ion-select-option *ngFor="let tipo of servico.listaTipoPlanejamentoGestacao" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>MAC utilizado antes da gestação:</ion-label>
           <ion-select multiple="true" formControlName="mac_gestacao" placeholder="Selecione">
-            <ion-select-option *ngFor="let tipo of servico.listaTipoMAC()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+            <ion-select-option *ngFor="let tipo of servico.listaTipoMAC" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
@@ -41,7 +41,7 @@
         <ion-item>
           <ion-label>Há quanto tempo?</ion-label>
           <ion-select multiple="true" formControlName="id_tempo_mac" placeholder="Selecione">
-            <ion-select-option *ngFor="let tipo of servico.listaTempoMAC()" [value]="tipo.valor">{{ tipo.nome }}</ion-select-option>
+            <ion-select-option *ngFor="let tipo of servico.listaTempoMAC" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>

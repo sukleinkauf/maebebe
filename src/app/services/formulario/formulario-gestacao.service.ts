@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { GerenciadorTiposService } from './gerenciador-tipos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,29 @@ export class FormularioGestacao {
   private formDadosPlanejamento: FormGroup;
   private formDadosPreNatal: FormGroup;
 
-  constructor() { }
+  public listaTipoDesfecho = [
+    {descricao: 'Ativo', id: '1'},
+    {descricao: 'Inativo', id: '0'},
+  ]
+
+  public listaTipoParto = []
+
+  public listaGestacaoPlanejada = [
+    {descricao: 'Sim', id: '1'},
+    {descricao: 'Não', id: '0'},
+  ]
+  
+  public listaTipoPlanejamentoGestacao = []
+
+  public listaTipoMAC = []
+
+  public listaTempoMAC = []
+
+  public listaTipoExamePreNatal = []
+
+  constructor(private gerenciadorTipos: GerenciadorTiposService) {
+    this.buscarTipos()
+  }
 
   getFormAbaDadosGestacao(): FormGroup {
     let builder = new FormBuilder()
@@ -24,8 +47,15 @@ export class FormularioGestacao {
       dt_dpp_eco: new FormControl(''),
     });
 
-    
     return this.formDadosGestacao
+  }
+  async buscarTipos() {
+    this.listaTipoParto = await this.gerenciadorTipos.buscarTipo('tipo_parto')
+    console.log(this.listaTipoParto)
+    this.listaTipoPlanejamentoGestacao = await this.gerenciadorTipos.buscarTipo('tipo_planejamento_gestacao')
+    this.listaTipoMAC = await this.gerenciadorTipos.buscarTipo('tipo_mac')
+    this.listaTempoMAC = await this.gerenciadorTipos.buscarTipo('tempo_mac')
+    this.listaTipoExamePreNatal = await this.gerenciadorTipos.buscarTipo('tipo_exame_prenatal')
   }
 
   getFormAbaDadosPlanejamento(): FormGroup {
@@ -62,50 +92,6 @@ export class FormularioGestacao {
 
     
     return this.formDadosPreNatal
-  }
-
-  listaTipoDesfecho() : Array<any> {
-    return [
-      {nome: 'Ativo', valor: '1'},
-      {nome: 'Inativo', valor: '0'},
-    ]
-  }
-
-  listaTipoParto() : Array<any> {
-    return [
-      {nome: 'Vaginal', valor: '1'},
-    ]
-  }
-
-  listaGestacaoPlanejada() : Array<any> {
-    return [
-      {nome: 'Sim', valor: '1'},
-      {nome: 'Não', valor: '0'},
-    ]
-  }
-
-  listaTipoPlanejamentoGestacao() : Array<any> {
-    return [
-      {nome: 'Suspensão do MAC', valor: '1'}
-    ]
-  }
-
-  listaTipoMAC() : Array<any> {
-    return [
-      {nome: 'Anticoncepcional oral', valor: '1'}
-    ]
-  }
-
-  listaTempoMAC() : Array<any> {
-    return [
-      {nome: '1 ano ou menos', valor: '1'}
-    ]
-  }
-
-  listaTipoExamePreNatal() : Array<any> {
-    return [
-      {nome: 'Exame laboratorial no 1º  trimestre', valor: '1'}
-    ]
   }
 
   salvar(): void {
