@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BuscaMaeService } from '../../../../services/busca/busca-mae.service';
 
 @Component({
   selector: 'app-busca',
@@ -9,16 +10,16 @@ import { Router } from '@angular/router';
 export class BuscaPage implements OnInit {
 
   public busca: String = "";
-  public maes: Array<any> = [];
+  public maes: any = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private servico: BuscaMaeService) { }
 
   voltar() {
     this.router.navigateByUrl("/inicio")
   }
 
-  buscarMaes() {
-    alert('Buscando por ' + this.busca)
+  async buscarMaes() {
+    this.maes = await this.servico.buscar(this.busca)
   }
 
   ngOnInit() {

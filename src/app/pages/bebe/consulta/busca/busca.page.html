@@ -1,25 +1,23 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
-      </ion-buttons>
-      <ion-title>Buscar Bebês</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Buscar Bebês</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-input [(ngModel)]="busca" placeholder="Nome ou CPF" type="text" autofocus clearInput></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="buscarBebes()">
+      Buscar
+    </ion-button>
+  </ion-card>
+
   
-  <ion-content>
-    <ion-card>
-      <ion-item>
-        <ion-input [(ngModel)]="busca" placeholder="Nome ou CPF" type="text" autofocus clearInput></ion-input>
-      </ion-item>
-  
-      <ion-button expand="block" (click)="buscarBebes()">
-        Buscar
-      </ion-button>
-    </ion-card>
-  
-    <ion-card>
-      Conteúdo
-    </ion-card>
-  </ion-content>
+</ion-content>
   
