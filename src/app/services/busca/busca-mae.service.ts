@@ -10,9 +10,16 @@ export class BuscaMaeService {
 
   }
 
-  async buscar(busca: String) {
-    let resultado: any = await this.api.chamarGET('mae/list/1')
+  async buscar(busca: String, pagina = 1) {
+    let filtroGet = (busca) ? '?search=' + busca : ''
+    let resultado: any = await this.api.chamarGET('mae/list/' + pagina + filtroGet)
 
-    return resultado.result
+    if(resultado.result.length > 0) {
+      pagina++
+
+      return resultado.result
+    }
+    
+    return []
   }
 }
