@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { BuscaGestacaoService } from 'src/app/services/busca/busca-gestacao.service';
 import { BuscaMaeService } from '../../../../services/busca/busca-mae.service';
 import { Location } from '@angular/common';
 
@@ -13,7 +11,7 @@ import { Location } from '@angular/common';
 export class PorMaePage implements OnInit {
 
   public gestacoes: any = []
-  private mae: Object = null
+  private mae: any = null
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +44,7 @@ export class PorMaePage implements OnInit {
   }
 
   abrirCadastroGestacao() {
-    this.router.navigateByUrl("/gestacao/cadastro")
+    this.router.navigateByUrl("/mae/:id/gestacao/cadastro".replace(":id", this.mae.id))
   }
   
   abrirEdicaoGestacao(gestacao: { id: number }) {

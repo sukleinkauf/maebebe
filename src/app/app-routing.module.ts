@@ -25,11 +25,11 @@ const routes: Routes = [
   { path: 'bebe/cadastro', loadChildren: './pages/bebe/cadastro/inicio/inicio.module#InicioPageModule', canActivate: [AuthGuard] },
   { path: 'bebe/consulta/busca', loadChildren: './pages/bebe/consulta/busca/busca.module#BuscaPageModule', canActivate: [AuthGuard] },
 
-  { path: 'gestacao/cadastro', redirectTo: 'gestacao/cadastro/dados-gestacao', canActivate: [AuthGuard] },
-  { path: 'gestacao/cadastro/dados-gestacao', loadChildren: './pages/gestacao/cadastro/dados-gestacao/dados-gestacao.module#DadosGestacaoPageModule', canActivate: [AuthGuard] },
-  { path: 'gestacao/cadastro/dados-planejamento', loadChildren: './pages/gestacao/cadastro/dados-planejamento/dados-planejamento.module#DadosPlanejamentoPageModule', canActivate: [AuthGuard] },
-  { path: 'gestacao/cadastro/dados-prenatal', loadChildren: './pages/gestacao/cadastro/dados-prenatal/dados-prenatal.module#DadosPrenatalPageModule', canActivate: [AuthGuard] },
-  { path: 'gestacao/:id/bebe', loadChildren: './pages/bebe/busca/por-gestacao/por-gestacao.module#PorGestacaoPageModule', canActivate: [AuthGuard] },
+  { path: 'mae/:id/gestacao/cadastro', redirectTo: 'mae/:id/gestacao/cadastro/dados-gestacao', canActivate: [AuthGuard] },
+  { path: 'mae/:id/gestacao/cadastro/dados-gestacao', loadChildren: './pages/gestacao/cadastro/dados-gestacao/dados-gestacao.module#DadosGestacaoPageModule', canActivate: [AuthGuard] },
+  { path: 'mae/:id/gestacao/cadastro/dados-planejamento', loadChildren: './pages/gestacao/cadastro/dados-planejamento/dados-planejamento.module#DadosPlanejamentoPageModule', canActivate: [AuthGuard] },
+  { path: 'mae/:id/gestacao/cadastro/dados-prenatal', loadChildren: './pages/gestacao/cadastro/dados-prenatal/dados-prenatal.module#DadosPrenatalPageModule', canActivate: [AuthGuard] },
+  { path: 'mae/:id/gestacao/:id/bebe', loadChildren: './pages/bebe/busca/por-gestacao/por-gestacao.module#PorGestacaoPageModule', canActivate: [AuthGuard] },
 
   
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
@@ -11,7 +12,7 @@ export class InicioPage implements OnInit {
 
   public maeForm: FormGroup;
 
-  constructor(private router: Router, private builder: FormBuilder) { 
+  constructor(private router: Router, private location: Location, private builder: FormBuilder) { 
 
     this.maeForm = builder.group({
       exemplo: new FormControl('')
@@ -20,7 +21,7 @@ export class InicioPage implements OnInit {
   }
 
   voltar() {
-    this.router.navigateByUrl("/inicio")
+    this.location.back()
   }
 
   salvar() {
