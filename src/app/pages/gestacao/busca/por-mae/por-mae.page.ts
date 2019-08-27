@@ -52,7 +52,8 @@ export class PorMaePage implements OnInit {
   }
 
   abrirListagemBebes(gestacao: { id_gestacao: number }) {
-    this.router.navigateByUrl("/gestacao/" + gestacao.id_gestacao + '/bebe')
+    console.log(this.mae)
+    this.router.navigateByUrl("mae/" + this.mae.id + "/gestacao/" + gestacao.id_gestacao + '/bebe')
   }
 
 }

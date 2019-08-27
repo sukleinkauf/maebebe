@@ -124,5 +124,7 @@ export class FormularioGestacao {
     let campos = { ...camposFormDadosGestacao, ...camposFormDadosPlanejamento, ...camposFormDadosPreNatal }
 
     this.api.chamarPOST('mae/:id/gestacao/new'.replace(":id", id), campos);
+
+    this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))
   }
 }

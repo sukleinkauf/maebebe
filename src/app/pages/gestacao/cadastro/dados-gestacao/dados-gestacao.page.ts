@@ -24,7 +24,8 @@ export class DadosGestacaoPage implements OnInit {
   }
 
   voltar() {
-    this.location.back()
+    let id = this.route.snapshot.paramMap.get('id')
+    this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))
   }
 
   salvar() {
