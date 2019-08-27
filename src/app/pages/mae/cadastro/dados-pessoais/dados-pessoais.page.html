@@ -10,20 +10,20 @@
   <ion-content>
     <form [formGroup]="maeForm" (ngSubmit)="salvar()">
       <ion-card>
+          <ion-item>
+              <ion-label>Inicio no Programa: </ion-label>
+              <ion-input type="date" formControlName="inicioPrograma"></ion-input>
+          </ion-item>
+          <ion-item> 
+            <ion-label position="floating">Nome completo:</ion-label>
+            <ion-input formControlName="nomeCompleto"></ion-input>
+          </ion-item>
         <ion-item>
-          <ion-label>Inicio no Programa: </ion-label>
-          <ion-input formControlName="inicioPrograma"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Nome completo</ion-label>
-          <ion-input formControlName="nomeCompleto"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">E-mail</ion-label>
+          <ion-label position="floating">E-mail:</ion-label>
           <ion-input formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">CPF</ion-label>
+          <ion-label position="floating">CPF:</ion-label>
           <ion-input formControlName="cpf"></ion-input>
         </ion-item>
         <ion-item>
@@ -31,18 +31,17 @@
           <ion-input formControlName="rg"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Cartão SUS</ion-label>
+          <ion-label position="floating">Cartão SUS:</ion-label>
           <ion-input formControlName="cartaoSUS"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Idade</ion-label>
-          <ion-input formControlName="idade"></ion-input>
+          <ion-label position="floating">Telefone:</ion-label>
+          <ion-input formControlName="telefone"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Endereço</ion-label>
-          <ion-input formControlName="endereco"></ion-input>
+          <ion-label position="floating">Telefone Apoio:</ion-label>
+          <ion-input formControlName="telefoneApoio"></ion-input>
         </ion-item>
-  
         <ion-button expand="block" color="primary" type="submit" [disabled]="maeForm.invalid">
           Próximo
         </ion-button>

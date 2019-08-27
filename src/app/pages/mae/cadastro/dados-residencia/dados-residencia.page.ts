@@ -14,7 +14,16 @@ export class DadosResidenciaPage implements OnInit {
   constructor(private router: Router, private builder: FormBuilder) { 
 
     this.maeForm = builder.group({
-      exemplo: new FormControl('')
+      cep: new FormControl(''),
+      estado: new FormControl(''),
+      cidade: new FormControl(''),
+      bairro: new FormControl(''),
+      endereco: new FormControl(''),
+      numero: new FormControl(''),
+      complemento: new FormControl(''),
+      pontoReferencia: new FormControl(''),
+      moradia: new FormControl(''),
+
     });
 
   }

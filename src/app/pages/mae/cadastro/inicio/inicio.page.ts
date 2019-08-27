@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormularioMae } from '../../../../services/formulario/formulario-mae.service';
+
 
 @Component({
   selector: 'app-inicio',
@@ -11,11 +13,10 @@ export class InicioPage implements OnInit {
 
   public maeForm: FormGroup;
 
-  constructor(private router: Router, private builder: FormBuilder) { 
+  constructor(private router: Router, private builder: FormBuilder, public servico: FormularioMae) { 
 
-    this.maeForm = builder.group({
-      exemplo: new FormControl('')
-    });
+    this.maeForm = servico.getFormAbaDadosMae()
+    console.log(this.servico.areas)
 
   }
 
