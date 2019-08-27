@@ -21,7 +21,9 @@ export class DadosPessoaisPage implements OnInit {
       rg: new FormControl(''),
       cartaoSUS: new FormControl(''),
       idade: new FormControl(''),
-      endereco: new FormControl('')
+      endereco: new FormControl(''),
+      telefone: new FormControl(''),
+      telefoneApoio: new FormControl('')
     });
 
   }

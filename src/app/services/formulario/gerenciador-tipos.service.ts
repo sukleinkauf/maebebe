@@ -18,6 +18,8 @@ export class GerenciadorTiposService {
     { nome: 'tipo_comportamento', rota: 'tipo_comportamento/list/1' },
     { nome: 'tipo_exame_prenatal', rota: 'tipo_exame_prenatal/list/1' },
     { nome: 'tipo_higiene_bebe', rota: 'tipo_higiene_bebe/list/1' },
+    { nome: 'area', rota: 'area/list/1' }
+
   ]
 
   constructor(private api: API, private storage: Storage) { }

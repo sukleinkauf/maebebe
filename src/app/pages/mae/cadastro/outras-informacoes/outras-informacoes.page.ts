@@ -14,7 +14,17 @@ export class OutrasInformacoesPage implements OnInit {
   constructor(private router: Router, private builder: FormBuilder) { 
 
     this.maeForm = builder.group({
-      exemplo: new FormControl('')
+      escolaridade: new FormControl(''),
+      trabalhaFora: new FormControl(''),
+      profissao: new FormControl(''),
+      dataRetorno: new FormControl(''),
+      rendaMensalFamiliar: new FormControl(''),
+      numeroMoradores: new FormControl(''),
+      estadoCivil: new FormControl(''),
+      imagem: new FormControl(''),
+      observacoes: new FormControl(''),
+      data: new FormControl(''),
+      preenchidoPor: new FormControl(''),
     });
 
   }
