@@ -39,13 +39,13 @@
         </ion-col>
 
         <ion-col size="3">
-          <ion-button fill="clear">
+          <ion-button (click)="abrirEdicaoMae(mae)" fill="clear">
             <ion-icon name="create" slot="icon-only"></ion-icon>
           </ion-button>
-          <ion-button fill="clear">
+          <ion-button (click)="abrirGestacoes(mae)" fill="clear">
             <ion-icon name="happy" slot="icon-only"></ion-icon>
           </ion-button>
-          <ion-button fill="clear">
+          <ion-button (click)="abrirEvolucoes(mae)" fill="clear">
               <ion-icon name="trending-up" slot="icon-only"></ion-icon>
             </ion-button>
         </ion-col>
@@ -60,4 +60,10 @@
       loadingText="Carregando...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

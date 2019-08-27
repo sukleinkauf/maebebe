@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormularioGestacao } from '../../../../services/formulario/formulario-gestacao.service';
 
 @Component({
@@ -12,18 +12,23 @@ export class DadosPlanejamentoPage implements OnInit {
 
   public gestacaoForm: FormGroup;
 
-  constructor(private router: Router, private servico: FormularioGestacao) { 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private servico: FormularioGestacao) { 
 
     this.gestacaoForm = servico.getFormAbaDadosPlanejamento()
 
   }
 
   voltar() {
-    this.router.navigateByUrl("/gestacao/cadastro/dados-gestacao")
+    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    this.servico.abrirFormAbaDadosGestacao(id);
   }
 
   salvar() {
-    this.router.navigateByUrl("/gestacao/cadastro/dados-prenatal")
+    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    this.servico.abrirFormAbaDadosPreNatal(id);
   }
 
   ngOnInit() {

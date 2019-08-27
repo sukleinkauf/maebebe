@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { GerenciadorTiposService } from './gerenciador-tipos.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BuscaMaeService } from '../busca/busca-mae.service';
+import { API } from '../http/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormularioGestacao {
+
+  private mae:any;
 
   private formDadosGestacao: FormGroup;
   private formDadosPlanejamento: FormGroup;
@@ -31,8 +36,21 @@ export class FormularioGestacao {
 
   public listaTipoExamePreNatal = []
 
-  constructor(private gerenciadorTipos: GerenciadorTiposService) {
-    this.buscarTipos()
+  constructor(
+    private gerenciadorTipos: GerenciadorTiposService, 
+    private maeServico: BuscaMaeService,
+    private api: API,
+    private router: Router
+  ) {
+    this.buscarTipos();
+  }
+
+  async buscarTipos() {
+    this.listaTipoParto = await this.gerenciadorTipos.buscarTipo('tipo_parto')
+    this.listaTipoPlanejamentoGestacao = await this.gerenciadorTipos.buscarTipo('tipo_planejamento_gestacao')
+    this.listaTipoMAC = await this.gerenciadorTipos.buscarTipo('tipo_mac')
+    this.listaTempoMAC = await this.gerenciadorTipos.buscarTipo('tempo_mac')
+    this.listaTipoExamePreNatal = await this.gerenciadorTipos.buscarTipo('tipo_exame_prenatal')
   }
 
   getFormAbaDadosGestacao(): FormGroup {
@@ -49,15 +67,7 @@ export class FormularioGestacao {
 
     return this.formDadosGestacao
   }
-  async buscarTipos() {
-    this.listaTipoParto = await this.gerenciadorTipos.buscarTipo('tipo_parto')
-    console.log(this.listaTipoParto)
-    this.listaTipoPlanejamentoGestacao = await this.gerenciadorTipos.buscarTipo('tipo_planejamento_gestacao')
-    this.listaTipoMAC = await this.gerenciadorTipos.buscarTipo('tipo_mac')
-    this.listaTempoMAC = await this.gerenciadorTipos.buscarTipo('tempo_mac')
-    this.listaTipoExamePreNatal = await this.gerenciadorTipos.buscarTipo('tipo_exame_prenatal')
-  }
-
+  
   getFormAbaDadosPlanejamento(): FormGroup {
     let builder = new FormBuilder()
 
@@ -94,7 +104,27 @@ export class FormularioGestacao {
     return this.formDadosPreNatal
   }
 
-  salvar(): void {
-    alert('Salvando dados')
+  abrirFormAbaDadosGestacao(id) {
+    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-gestacao".replace(":id", id))
+  }
+
+  abrirFormAbaDadosPlanejamento(id) {
+    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-planejamento".replace(":id", id))
+  }
+
+  abrirFormAbaDadosPreNatal(id) {
+    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-prenatal".replace(":id", id))
+  }
+
+  salvar(id): void {
+    let camposFormDadosGestacao = this.formDadosGestacao.getRawValue();
+    let camposFormDadosPlanejamento = this.formDadosPlanejamento.getRawValue();
+    let camposFormDadosPreNatal = this.formDadosPreNatal.getRawValue();
+
+    let campos = { ...camposFormDadosGestacao, ...camposFormDadosPlanejamento, ...camposFormDadosPreNatal }
+
+    this.api.chamarPOST('mae/:id/gestacao/new'.replace(":id", id), campos);
+
+    this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))
   }
 }

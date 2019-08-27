@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormularioMae } from '../../../../services/formulario/formulario-mae.service';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
@@ -13,7 +13,7 @@ export class InicioPage implements OnInit {
 
   public maeForm: FormGroup;
 
-  constructor(private router: Router, private builder: FormBuilder, public servico: FormularioMae) { 
+  constructor(private router: Router, private builder: FormBuilder, private location: Location, public servico: FormularioMae) { 
 
     this.maeForm = servico.getFormAbaDadosMae()
     console.log(this.servico.areas)
@@ -21,7 +21,7 @@ export class InicioPage implements OnInit {
   }
 
   voltar() {
-    this.router.navigateByUrl("/inicio")
+    this.location.back()
   }
 
   salvar() {
