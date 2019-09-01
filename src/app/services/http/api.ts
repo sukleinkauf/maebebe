@@ -8,7 +8,7 @@ import { LoginService } from '../login/login.service';
 export class API {
 
     private http: HttpClient;
-    private urlApi = "http://ceted.feevale.br/mb/API/index.php/"
+    private urlApi = "http://ceted.feevale.br/maebebe/API/index.php/"
 
     constructor(
         handler : HttpBackend,

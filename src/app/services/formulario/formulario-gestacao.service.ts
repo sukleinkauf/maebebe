@@ -6,6 +6,7 @@ import { BuscaMaeService } from '../busca/busca-mae.service';
 import { API } from '../http/api';
 import { LoginService } from '../login/login.service';
 import { User } from '../login/user';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -135,6 +136,16 @@ export class FormularioGestacao {
       id_mae: id_mae
     }
     let camposFormDadosGestacao = this.formDadosGestacao.getRawValue();
+
+    let dt_dum:moment.Moment = moment(camposFormDadosGestacao.dt_dum)
+    if(dt_dum.isValid()) camposFormDadosGestacao.dt_dum = dt_dum.format('DD/MM/YYYY')
+
+    let dt_dpp:moment.Moment = moment(camposFormDadosGestacao.dt_dpp)
+    if(dt_dpp.isValid()) camposFormDadosGestacao.dt_dpp = dt_dpp.format('DD/MM/YYYY')
+
+    let dt_dpp_eco:moment.Moment = moment(camposFormDadosGestacao.dt_dpp_eco)
+    if(dt_dpp_eco.isValid()) camposFormDadosGestacao.dt_dpp_eco = dt_dpp_eco.format('DD/MM/YYYY')
+
     let camposFormDadosPlanejamento = this.formDadosPlanejamento.getRawValue();
     let camposFormDadosPreNatal = this.formDadosPreNatal.getRawValue();
 
@@ -155,7 +166,7 @@ export class FormularioGestacao {
   }
 
   async salvar(id) {
-    let campos = this.mapearCampos(id)
+    let campos:object = await this.mapearCampos(id)
     this.api.chamarPOST('mae/:id/gestacao/new'.replace(":id", id), campos);
 
     this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))
