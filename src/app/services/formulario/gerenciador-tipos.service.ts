@@ -8,6 +8,7 @@ export class GerenciadorTiposService {
 
   private listaTipos = [
     { nome: 'tipo_parto', rota: 'tipo_parto/list/1' },
+    { nome: 'tipo_motivo_desfecho', rota: 'tipo_motivo_desfecho/list/1' },
     { nome: 'tipo_planejamento_gestacao', rota: 'tipo_planejamento_gestacao/list/1' },
     { nome: 'tipo_mac', rota: 'tipo_mac/list/1' },
     { nome: 'tempo_mac', rota: 'tempo_mac/list/1' },
@@ -19,7 +20,6 @@ export class GerenciadorTiposService {
     { nome: 'tipo_exame_prenatal', rota: 'tipo_exame_prenatal/list/1' },
     { nome: 'tipo_higiene_bebe', rota: 'tipo_higiene_bebe/list/1' },
     { nome: 'area', rota: 'area/list/1' }
-
   ]
 
   constructor(private api: API, private storage: Storage) { }
@@ -45,7 +45,7 @@ export class GerenciadorTiposService {
       this.listaTipos.forEach(async tipo => {
         await this.atualizarTipo(tipo)
       });
-    }, 50000);
+    }, 100000);
     
   }
 

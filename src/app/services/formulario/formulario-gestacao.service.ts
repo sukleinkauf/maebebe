@@ -4,6 +4,8 @@ import { GerenciadorTiposService } from './gerenciador-tipos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BuscaMaeService } from '../busca/busca-mae.service';
 import { API } from '../http/api';
+import { LoginService } from '../login/login.service';
+import { User } from '../login/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,10 @@ export class FormularioGestacao {
   public listaTipoDesfecho = [
     {descricao: 'Ativo', id: '1'},
     {descricao: 'Inativo', id: '0'},
+  ]
+
+  public listaMotivoDesfecho = [
+
   ]
 
   public listaTipoParto = []
@@ -40,12 +46,14 @@ export class FormularioGestacao {
     private gerenciadorTipos: GerenciadorTiposService, 
     private maeServico: BuscaMaeService,
     private api: API,
-    private router: Router
+    private router: Router,
+    private login: LoginService
   ) {
     this.buscarTipos();
   }
 
   async buscarTipos() {
+    this.listaMotivoDesfecho = await this.gerenciadorTipos.buscarTipo('tipo_motivo_desfecho')
     this.listaTipoParto = await this.gerenciadorTipos.buscarTipo('tipo_parto')
     this.listaTipoPlanejamentoGestacao = await this.gerenciadorTipos.buscarTipo('tipo_planejamento_gestacao')
     this.listaTipoMAC = await this.gerenciadorTipos.buscarTipo('tipo_mac')
@@ -57,8 +65,12 @@ export class FormularioGestacao {
     let builder = new FormBuilder()
 
     this.formDadosGestacao = builder.group({
-      id_tipo_desfecho: new FormControl(''),
-      numero_gestacao: new FormControl(''),
+      id_tipo_desfecho: new FormControl('1'),
+      id_motivo_desfecho: new FormControl(''),
+      desfecho_obs: new FormControl(''),
+      dt_registro_desfecho: new FormControl(''),
+      id_usuario_registro_desfecho: new FormControl(''),
+      numero_gestacao: new FormControl('1'),
       id_tipo_parto_planejado: new FormControl(''),
       dt_dum: new FormControl(''),
       dt_dpp: new FormControl(''),
@@ -72,13 +84,13 @@ export class FormularioGestacao {
     let builder = new FormBuilder()
 
     this.formDadosPlanejamento = builder.group({
-      planejada: new FormControl(''),
-      planejamento_gestacao: new FormControl(''),
-      mac_gestacao: new FormControl(''),
+      planejada: new FormControl('0'),
       mac_antes_gestacao: new FormControl(''),
+      ref_gestacao_planejamento_gestacao: new FormControl(''),
       id_tempo_mac: new FormControl(''),
       mac_antes_gestacao_nome_orientador: new FormControl(''),
       mac_antes_gestacao_obs: new FormControl(''),
+      ref_mac_gestacao: new FormControl(''),
     });
 
     
@@ -89,7 +101,7 @@ export class FormularioGestacao {
     let builder = new FormBuilder()
 
     this.formDadosPreNatal = builder.group({
-      exame_prenatal: new FormControl(''),
+      ref_gestacao_exame_prenatal: new FormControl(''),
       exame_prenatal_obs: new FormControl(''),
       ig_inicio_pre_natal: new FormControl(''),
       peso_pre_gestacional: new FormControl(''),
@@ -116,13 +128,34 @@ export class FormularioGestacao {
     this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-prenatal".replace(":id", id))
   }
 
-  salvar(id): void {
+  async mapearCampos(id_mae) {
+    let usuario:User = await this.login.getUser()
+    
+    let camposPadrao = {
+      id_mae: id_mae
+    }
     let camposFormDadosGestacao = this.formDadosGestacao.getRawValue();
     let camposFormDadosPlanejamento = this.formDadosPlanejamento.getRawValue();
     let camposFormDadosPreNatal = this.formDadosPreNatal.getRawValue();
 
-    let campos = { ...camposFormDadosGestacao, ...camposFormDadosPlanejamento, ...camposFormDadosPreNatal }
+    let camposUsuario = {
+      dt_registro: '01/09/2019',
+      id_usuario_registro: usuario.id
+    }
 
+    let campos = { 
+      ...camposPadrao, 
+      ...camposFormDadosGestacao, 
+      ...camposFormDadosPlanejamento, 
+      ...camposFormDadosPreNatal,
+      ...camposUsuario
+    }
+
+    return campos
+  }
+
+  async salvar(id) {
+    let campos = this.mapearCampos(id)
     this.api.chamarPOST('mae/:id/gestacao/new'.replace(":id", id), campos);
 
     this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))

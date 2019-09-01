@@ -20,7 +20,6 @@ export class DadosGestacaoPage implements OnInit {
     public servico: FormularioGestacao) { 
     
     this.gestacaoForm = servico.getFormAbaDadosGestacao()
-
   }
 
   voltar() {

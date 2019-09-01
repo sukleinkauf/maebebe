@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpBackend } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpBackend, HttpParams } from '@angular/common/http';
 import { LoginService } from '../login/login.service';
 
 @Injectable({
@@ -26,10 +26,16 @@ export class API {
     }
 
     async chamarPOST(url: string, data: any) {
+        let body = new HttpParams()
+        for (var key in data) {
+            body = body.append(key, data[key])
+        }
+        
         let usuario = await this.login.getUser()
+        let headers = new HttpHeaders({'Authorization' : usuario.token})
 
-        return this.http.post(this.urlApi + url, data, {
-            headers: new HttpHeaders({'Authorization': usuario.token})
+        return this.http.post(this.urlApi + url, body, {
+            headers: headers
         }).toPromise();
     }
 }
