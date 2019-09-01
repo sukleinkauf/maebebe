@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuscaMaeService } from '../../../../services/busca/busca-mae.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-busca',
@@ -13,8 +14,22 @@ export class BuscaPage implements OnInit {
   public busca: String = ""
   public maes: any = []
   private infiniteScroll = null
+  private carregando: boolean = false
 
-  constructor(private router: Router, private servico: BuscaMaeService) { }
+  constructor(
+    private router: Router, 
+    private servico: BuscaMaeService,
+    private toastController: ToastController
+  ) { }
+
+  private async mostrarMensagem(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 
   voltar() {
     this.router.navigateByUrl("/inicio")
@@ -34,7 +49,14 @@ export class BuscaPage implements OnInit {
 
 
   async buscarMaes() {
+    this.carregando = true
     this.maes = await this.servico.buscar(this.busca)
+    this.carregando = false
+
+    if(this.maes.length == 0) {
+      this.mostrarMensagem("A busca não retornou resultado")
+    }
+
     this.pagina = 1
 
     if(this.infiniteScroll) 
@@ -45,7 +67,9 @@ export class BuscaPage implements OnInit {
     this.infiniteScroll = event.target
 
     this.pagina++
+    this.carregando = true
     let resultado = await this.servico.buscar(this.busca, this.pagina)
+    this.carregando = false
     
     if(resultado.length == 0) {
       this.infiniteScroll.disabled = true;

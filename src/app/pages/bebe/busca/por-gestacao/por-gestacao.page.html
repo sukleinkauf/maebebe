@@ -12,6 +12,11 @@
     <ion-label>Bebês de {{ gestacao.nome_mae }}</ion-label>
   </ion-item>
 
+  <ion-row *ngIf="carregando" class="ion-text-center ion-padding-top">
+    <ion-col size="12"><ion-spinner></ion-spinner></ion-col>
+    <ion-col size="12">Carregando...</ion-col>
+  </ion-row>
+
   <ion-card *ngFor="let bebe of bebes">
 
     <ion-card-header>
