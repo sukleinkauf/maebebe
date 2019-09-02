@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Bebê</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="bebeForm" (ngSubmit)="salvar()">
+    <ion-card>
+
+
+
+      <ion-button expand="block" color="primary" type="submit" [disabled]="bebeForm.invalid">
+        Próximo
+      </ion-button>
+    </ion-card>
+  </form>
+</ion-content>

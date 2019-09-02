@@ -22,12 +22,12 @@ export class DadosPrenatalPage implements OnInit {
   }
 
   voltar() {
-    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    let id:number = Number(this.route.snapshot.paramMap.get('id_mae'))
     this.servico.abrirFormAbaDadosPlanejamento(id);
   }
 
   salvar() {
-    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    let id:number = Number(this.route.snapshot.paramMap.get('id_mae'))
     this.servico.salvar(id);
   }
 

@@ -8,5 +8,14 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="bebeForm" (ngSubmit)="salvar()">
+    <ion-card>
 
+
+
+      <ion-button expand="block" color="primary" type="submit" [disabled]="bebeForm.invalid">
+        Próximo
+      </ion-button>
+    </ion-card>
+  </form>
 </ion-content>

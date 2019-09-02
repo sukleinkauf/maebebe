@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { GerenciadorTiposService } from './gerenciador-tipos.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { BuscaMaeService } from '../busca/busca-mae.service';
+import { Router } from '@angular/router';
 import { API } from '../http/api';
+import { BuscaMaeService } from '../busca/busca-mae.service';
 import { LoginService } from '../login/login.service';
 import { User } from '../login/user';
 import * as moment from 'moment';
@@ -118,15 +118,15 @@ export class FormularioGestacao {
   }
 
   abrirFormAbaDadosGestacao(id) {
-    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-gestacao".replace(":id", id))
+    this.router.navigateByUrl("mae/:id_mae/gestacao/cadastro/dados-gestacao".replace(":id_mae", id))
   }
 
   abrirFormAbaDadosPlanejamento(id) {
-    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-planejamento".replace(":id", id))
+    this.router.navigateByUrl("mae/:id_mae/gestacao/cadastro/dados-planejamento".replace(":id_mae", id))
   }
 
   abrirFormAbaDadosPreNatal(id) {
-    this.router.navigateByUrl("mae/:id/gestacao/cadastro/dados-prenatal".replace(":id", id))
+    this.router.navigateByUrl("mae/:id_mae/gestacao/cadastro/dados-prenatal".replace(":id_mae", id))
   }
 
   async mapearCampos(id_mae) {

@@ -32,14 +32,14 @@ export class PorGestacaoPage implements OnInit {
   private async mostrarMensagem(message) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 3000,
-      position: 'middle'
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
 
   ionViewWillEnter() {
-    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    let id:number = Number(this.route.snapshot.paramMap.get('id_gestacao'))
 
     this.carregarGestacao(id)
     this.carregarBebes(id)
@@ -64,7 +64,10 @@ export class PorGestacaoPage implements OnInit {
   }
 
   abrirCadastroBebe() {
-    this.router.navigateByUrl("/bebe/cadastro")
+    let url = "mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro"
+                .replace(":id_mae", this.route.snapshot.paramMap.get('id_mae'))
+                .replace(":id_gestacao", this.route.snapshot.paramMap.get('id_gestacao'))
+    this.router.navigateByUrl(url)
   }
 
   abrirEdicaoBebe() {

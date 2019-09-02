@@ -62,7 +62,7 @@ export class PorMaePage implements OnInit {
   }
 
   abrirCadastroGestacao() {
-    this.router.navigateByUrl("/mae/:id/gestacao/cadastro".replace(":id", this.mae.id))
+    this.router.navigateByUrl("/mae/:id_mae/gestacao/cadastro".replace(":id_mae", this.mae.id))
   }
   
   abrirEdicaoGestacao(gestacao: { id: number }) {

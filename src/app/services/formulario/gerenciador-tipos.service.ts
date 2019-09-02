@@ -19,7 +19,17 @@ export class GerenciadorTiposService {
     { nome: 'tipo_comportamento', rota: 'tipo_comportamento/list/1' },
     { nome: 'tipo_exame_prenatal', rota: 'tipo_exame_prenatal/list/1' },
     { nome: 'tipo_higiene_bebe', rota: 'tipo_higiene_bebe/list/1' },
-    { nome: 'area', rota: 'area/list/1' }
+    { nome: 'area', rota: 'area/list/1' },
+
+    { nome: 'genero', rota: 'genero/list/1' },
+    { nome: 'tipo_escala', rota: 'tipo_escala/list/1' },
+    { nome: 'tipo_triagem_neonatal', rota: 'tipo_triagem_neonatal/list/1' },
+    { nome: 'tipo_denver', rota: 'tipo_denver/list/1' },
+    { nome: 'tipo_intercorrencia_peri_neonatal', rota: 'tipo_intercorrencia_peri_neonatal/list/1' },
+    { nome: 'tipo_intercorrencia_primeiro_ano_vida', rota: 'tipo_intercorrencia_primeiro_ano_vida/list/1' },
+
+    { nome: 'estado', rota: 'estado/list/1' },
+    
   ]
 
   constructor(private api: API, private storage: Storage) { }
