@@ -12,7 +12,7 @@
     <ion-card>
       <ion-item>
         <ion-label>Gestação Planejada: </ion-label>
-        <ion-select formControlName="planejada" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="planejada" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaGestacaoPlanejada" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>

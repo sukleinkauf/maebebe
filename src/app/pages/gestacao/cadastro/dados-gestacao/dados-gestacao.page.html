@@ -12,7 +12,7 @@
     <ion-card>
       <ion-item>
         <ion-label>Desfecho: </ion-label>
-        <ion-select formControlName="id_tipo_desfecho" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="id_tipo_desfecho" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaTipoDesfecho" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -20,7 +20,7 @@
       <ion-card *ngIf="gestacaoForm.value.id_tipo_desfecho == 0">
         <ion-item>
           <ion-label>Motivo Desfecho</ion-label>
-          <ion-select formControlName="id_motivo_desfecho" placeholder="Selecione">
+          <ion-select interface="popover" formControlName="id_motivo_desfecho" placeholder="Selecione">
             <ion-select-option *ngFor="let tipo of servico.listaMotivoDesfecho" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -40,7 +40,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Tipo de Parto</ion-label>
-        <ion-select formControlName="id_tipo_parto_planejado" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="id_tipo_parto_planejado" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaTipoParto" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>
