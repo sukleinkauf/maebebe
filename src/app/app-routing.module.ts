@@ -35,6 +35,8 @@ const routes: Routes = [
   { path: 'mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-parto', loadChildren: './pages/bebe/cadastro/dados-parto/dados-parto.module#DadosPartoPageModule', canActivate: [AuthGuard] },
   { path: 'mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-testes', loadChildren: './pages/bebe/cadastro/dados-testes/dados-testes.module#DadosTestesPageModule', canActivate: [AuthGuard] },
   { path: 'mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-intercorrencias', loadChildren: './pages/bebe/cadastro/dados-intercorrencias/dados-intercorrencias.module#DadosIntercorrenciasPageModule', canActivate: [AuthGuard] },
+  { path: 'mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-documentos', loadChildren: './pages/bebe/cadastro/dados-documentos/dados-documentos.module#DadosDocumentosPageModule' },
+
 
 
   

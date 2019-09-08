@@ -76,6 +76,11 @@
   --ion-color-light-tint: #f5f6f9;
 
   --ion-toolbar-background: #93c5f2;
+  
+  .alert-wrapper {
+    --max-width: 90%;
+    --width: 90%;
+  }
 }
 
 .sc-ion-alert-md .alert-radio-label{ white-space: pre-line !important;}

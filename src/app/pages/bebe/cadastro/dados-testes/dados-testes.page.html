@@ -10,8 +10,59 @@
 <ion-content>
   <form [formGroup]="bebeForm" (ngSubmit)="salvar()">
     <ion-card>
+      <ion-item>
+        <ion-label position="stacked">Teste Reflexo Olho Vermelho</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_triagem_neonatal_reflexo_olho_vermelho" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTriagemNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Teste Orelhinha</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_triagem_neonatal_orelhinha" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTriagemNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Teste Coraçãozinho</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_triagem_neonatal_coracaozinho" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTriagemNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Teste Pezinho</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_triagem_neonatal_pezinho" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTriagemNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Teste Linguinha</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_triagem_neonatal_linguinha" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTriagemNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Anormalidades na Triagem Neonatal</ion-label>
+        <ion-textarea rows="4" formControlName="anormalidade_triagem_neonatal_obs"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Teste de Denver no 6º mês</ion-label>
+        <ion-select interface="popover" formControlName="id_denver_6_mes" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTesteDenver" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Teste de Denver no 12º mês</ion-label>
+        <ion-select interface="popover" formControlName="id_denver_12_mes" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTesteDenver" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
       <ion-button expand="block" color="primary" type="submit" [disabled]="bebeForm.invalid">
         Próximo

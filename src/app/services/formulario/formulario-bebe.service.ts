@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { GerenciadorTiposService } from './gerenciador-tipos.service';
 import { Router } from '@angular/router';
 import { API } from '../http/api';
@@ -8,20 +8,28 @@ import { API } from '../http/api';
     providedIn: 'root'
 })
 export class FormularioBebe {
-    
     public formDadosBebe: FormGroup
     public formDadosParto: FormGroup
     public formDadosTestes: FormGroup
     public formDadosIntercorrencias: FormGroup
-
+    public formDadosDocumentos: FormGroup
+    
     public listaTipoDesfecho = [
         {descricao: 'Nativivo', id: '0'},
         {descricao: 'Natimorto', id: '1'},
     ]
+    public listaTipoParto = []
     public listaProblemaParto = [
         {descricao: 'Sim', id: '1'},
         {descricao: 'Não', id: '0'},
     ]
+    public listaTipoEscala = []
+    public listaTipoGenero = []
+    public listaTriagemNeonatal = []
+    public listaTesteDenver = []
+    public listaIntercorrenciaNeonatal = []
+    public listaIntercorrenciaPrimeiroAno = []
+    public listaEstados = []
 
     constructor(
         private gerenciadorTipos: GerenciadorTiposService, 
@@ -41,12 +49,9 @@ export class FormularioBebe {
             local_nascimento: new FormControl(''),
             nome: new FormControl(''),
             numero: new FormControl(''),
-            cpf: new FormControl(''),
-            rg: new FormControl(''),
-            cartao_sus: new FormControl(''),
             pediatra: new FormControl(''),
-            numero_consultas_pre_natal: new FormControl(''),
-            numero_consultas_pre_natal_obs: new FormControl(''),
+            id_tipo_parto: new FormControl(''),
+            problema_parto: new FormControl(''),
         });
 
         return this.formDadosBebe
@@ -56,8 +61,6 @@ export class FormularioBebe {
         let builder = new FormBuilder()
 
         this.formDadosParto = builder.group({
-            id_tipo_parto: new FormControl(''),
-            problema_parto: new FormControl(''),
             peso_nascimento: new FormControl(''),
             comprimento_nascimento: new FormControl(''),
             idade_gestacional_semanas_parto: new FormControl(''),
@@ -84,7 +87,6 @@ export class FormularioBebe {
             anormalidade_triagem_neonatal_obs: new FormControl(''),
             id_denver_6_mes: new FormControl(''),
             id_denver_12_mes: new FormControl(''),
-
         })
         
         return this.formDadosTestes
@@ -94,17 +96,31 @@ export class FormularioBebe {
         let builder = new FormBuilder()
         
         this.formDadosIntercorrencias = builder.group({
-            ref_bebe_intercorrencia_peri_neonatal: new FormControl(''),
+            numero_consultas_pre_natal: new FormControl(''),
+            numero_consultas_pre_natal_obs: new FormControl(''),
+            ref_bebe_intercorrencia_peri_neonatal: new FormControl([]),
             intercorrencia_peri_neonatal_obs: new FormControl(''),
-            ref_bebe_intercorrencia_primeiro_ano_vida: new FormControl(''),
+            ref_bebe_intercorrencia_primeiro_ano_vida: new FormControl([]),
             intercorrencia_primeiro_ano_vida_obs: new FormControl(''),
-            id_estado: new FormControl(''),
+        })
+        
+        return this.formDadosIntercorrencias
+    }
+
+    getFormAbaDadosDocumentos(): FormGroup {
+        let builder = new FormBuilder()
+        
+        this.formDadosDocumentos = builder.group({
+            cpf: new FormControl(''),
+            rg: new FormControl(''),
+            cartao_sus: new FormControl(''),
+            id_estado: new FormControl(23),
             id_cidade: new FormControl(''),
             id_bairro: new FormControl(''),
             obs: new FormControl('')
         })
         
-        return this.formDadosIntercorrencias
+        return this.formDadosDocumentos
     }
 
     abrirFormAbaDadosBebe(id_mae, id_gestacao) {
@@ -134,12 +150,35 @@ export class FormularioBebe {
     abrirFormAbaDadosIntercorrencias(id_mae, id_gestacao) {
         let url = "mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-intercorrencias"
                         .replace(":id_mae", id_mae)
-                        .replace("id_gestacao", id_gestacao)
+                        .replace(":id_gestacao", id_gestacao)
         
         this.router.navigateByUrl(url)
     }
 
+    abrirFormAbaDadosDocumentos(id_mae, id_gestacao) {
+        let url = "mae/:id_mae/gestacao/:id_gestacao/bebe/cadastro/dados-documentos"
+                        .replace(":id_mae", id_mae)
+                        .replace(":id_gestacao", id_gestacao)
+        
+        this.router.navigateByUrl(url)
+    }
+
+    salvar() {
+        // console.log(this.formDadosBebe.getRawValue())
+        // console.log(this.formDadosParto.getRawValue())
+        // console.log(this.formDadosTestes.getRawValue())
+        console.log(this.formDadosIntercorrencias.getRawValue())
+        // console.log(this.formDadosDocumentos.getRawValue())
+    }
+
     async buscarTipos() {
-        // this.listaMotivoDesfecho = await this.gerenciadorTipos.buscarTipo('tipo_motivo_desfecho')
+        this.listaTipoGenero = await this.gerenciadorTipos.buscarTipo('genero')
+        this.listaTipoParto = await this.gerenciadorTipos.buscarTipo('tipo_parto')
+        this.listaTipoEscala = await this.gerenciadorTipos.buscarTipo('tipo_escala')
+        this.listaTriagemNeonatal = await this.gerenciadorTipos.buscarTipo('tipo_triagem_neonatal')
+        this.listaTesteDenver = await this.gerenciadorTipos.buscarTipo('tipo_denver')
+        this.listaIntercorrenciaNeonatal = await this.gerenciadorTipos.buscarTipo('tipo_intercorrencia_peri_neonatal')
+        this.listaIntercorrenciaPrimeiroAno = await this.gerenciadorTipos.buscarTipo('tipo_intercorrencia_primeiro_ano_vida')
+        this.listaEstados = await this.gerenciadorTipos.buscarTipo('estado')
     }
 }

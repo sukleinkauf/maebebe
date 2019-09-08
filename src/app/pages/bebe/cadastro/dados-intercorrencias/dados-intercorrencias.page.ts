@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormularioBebe } from '../../../../services/formulario/formulario-bebe.service';
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
@@ -15,6 +15,7 @@ export class DadosIntercorrenciasPage implements OnInit {
   
   constructor(
     private router: Router, 
+    private route: ActivatedRoute,
     private location: Location,
     public servico: FormularioBebe
   ) { 
@@ -26,7 +27,9 @@ export class DadosIntercorrenciasPage implements OnInit {
   }
 
   salvar() {
-    
+    let id_mae:number = Number(this.route.snapshot.paramMap.get('id_mae'))
+    let id_gestacao:number = Number(this.route.snapshot.paramMap.get('id_gestacao'))
+    this.servico.abrirFormAbaDadosDocumentos(id_mae, id_gestacao) 
   }
 
   ngOnInit() {
