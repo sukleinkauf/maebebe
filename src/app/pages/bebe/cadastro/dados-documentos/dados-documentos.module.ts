@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DadosDocumentosPage } from './dados-documentos.page';
+import { BrMaskerModule } from 'br-mask';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrMaskerModule
   ],
   declarations: [DadosDocumentosPage]
 })
