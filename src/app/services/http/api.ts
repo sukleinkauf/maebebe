@@ -24,4 +24,12 @@ export class API {
             headers: new HttpHeaders({'Authorization': usuario.token})
         }).toPromise();
     }
+
+    async chamarPOST(url: string, data: any) {
+        let usuario = await this.login.getUser()
+
+        return this.http.post(this.urlApi + url, data, {
+            headers: new HttpHeaders({'Authorization': usuario.token})
+        }).toPromise();
+    }
 }

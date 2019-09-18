@@ -20,6 +20,19 @@ export class BuscaPage implements OnInit {
     this.router.navigateByUrl("/inicio")
   }
 
+  abrirEdicaoMae(mae: { id: number }) {
+    this.router.navigateByUrl('/mae/'+ mae.id +'/edicao')
+  }
+
+  abrirGestacoes(mae: { id: number }) {
+    this.router.navigateByUrl('/mae/'+ mae.id +'/gestacao')
+  }
+
+  abrirEvolucoes(mae: Object) {
+    this.router.navigateByUrl('/inicio')
+  }
+
+
   async buscarMaes() {
     this.maes = await this.servico.buscar(this.busca)
     this.pagina = 1
