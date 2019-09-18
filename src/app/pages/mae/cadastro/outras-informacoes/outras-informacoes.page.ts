@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormularioMae } from '../../../../services/formulario/formulario-mae.service';
+
 
 @Component({
   selector: 'app-outras-informacoes',
@@ -11,21 +13,9 @@ export class OutrasInformacoesPage implements OnInit {
 
   public maeForm: FormGroup;
 
-  constructor(private router: Router, private builder: FormBuilder) { 
+  constructor(private router: Router, private builder: FormBuilder, public servico: FormularioMae) { 
 
-    this.maeForm = builder.group({
-      escolaridade: new FormControl(''),
-      trabalhaFora: new FormControl(''),
-      profissao: new FormControl(''),
-      dataRetorno: new FormControl(''),
-      rendaMensalFamiliar: new FormControl(''),
-      numeroMoradores: new FormControl(''),
-      estadoCivil: new FormControl(''),
-      imagem: new FormControl(''),
-      observacoes: new FormControl(''),
-      data: new FormControl(''),
-      preenchidoPor: new FormControl(''),
-    });
+    this.maeForm = servico.getFormAbaDadosOutrasInformacoes();
 
   }
 

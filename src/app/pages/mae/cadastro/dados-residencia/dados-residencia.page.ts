@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormularioMae } from '../../../../services/formulario/formulario-mae.service';
 
 @Component({
   selector: 'app-dados-residencia',
@@ -11,20 +12,9 @@ export class DadosResidenciaPage implements OnInit {
 
   public maeForm: FormGroup;
 
-  constructor(private router: Router, private builder: FormBuilder) { 
+  constructor(private router: Router, private builder: FormBuilder, public servico: FormularioMae) { 
 
-    this.maeForm = builder.group({
-      cep: new FormControl(''),
-      estado: new FormControl(''),
-      cidade: new FormControl(''),
-      bairro: new FormControl(''),
-      endereco: new FormControl(''),
-      numero: new FormControl(''),
-      complemento: new FormControl(''),
-      pontoReferencia: new FormControl(''),
-      moradia: new FormControl(''),
-
-    });
+    this.maeForm = servico.getFormAbaDadosResidenciais();
 
   }
 
