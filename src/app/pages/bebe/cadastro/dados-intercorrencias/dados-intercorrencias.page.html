@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Bebê</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="bebeForm" (ngSubmit)="salvar()">
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Número de consultas de pré-natal</ion-label>
+        <ion-input formControlName="numero_consultas_pre_natal"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Consultas de pré-natal Observação</ion-label>
+        <ion-textarea rows="3" formControlName="numero_consultas_pre_natal_obs"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Tipo de Intercorrências Peri e Neonatais</ion-label>
+        <ion-select multiple="true" formArrayName="ref_bebe_intercorrencia_peri_neonatal" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaIntercorrenciaNeonatal" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Outras Intercorrências Peri e Neonatais</ion-label>
+        <ion-textarea rows="4" formControlName="intercorrencia_peri_neonatal_obs"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Tipo de Intercorrências 1º Ano de Vida</ion-label>
+        <ion-select multiple="true" formArrayName="ref_bebe_intercorrencia_primeiro_ano_vida" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaIntercorrenciaPrimeiroAno" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Outras Intercorrências 1º Ano de Vida</ion-label>
+        <ion-textarea rows="4" formControlName="intercorrencia_primeiro_ano_vida_obs"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" type="submit" [disabled]="bebeForm.invalid">
+        Próximo
+      </ion-button>
+    </ion-card>
+  </form>
+</ion-content>

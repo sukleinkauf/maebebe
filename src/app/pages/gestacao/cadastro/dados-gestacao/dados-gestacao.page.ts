@@ -20,16 +20,15 @@ export class DadosGestacaoPage implements OnInit {
     public servico: FormularioGestacao) { 
     
     this.gestacaoForm = servico.getFormAbaDadosGestacao()
-
   }
 
   voltar() {
-    let id = this.route.snapshot.paramMap.get('id')
+    let id = this.route.snapshot.paramMap.get('id_mae')
     this.router.navigateByUrl("mae/:id/gestacao".replace(":id", id))
   }
 
   salvar() {
-    let id:number = Number(this.route.snapshot.paramMap.get('id'))
+    let id:number = Number(this.route.snapshot.paramMap.get('id_mae'))
     this.servico.abrirFormAbaDadosPlanejamento(id);
   }
 

@@ -12,7 +12,7 @@
     <ion-card>
       <ion-item>
         <ion-label>Gestação Planejada: </ion-label>
-        <ion-select formControlName="planejada" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="planejada" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaGestacaoPlanejada" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -24,13 +24,13 @@
       <ion-card>
         <ion-item>
           <ion-label>Tipo de Planejamento Gestação:</ion-label>
-          <ion-select multiple="true" formControlName="planejamento_gestacao" placeholder="Selecione">
+          <ion-select multiple="true" formControlName="ref_gestacao_planejamento_gestacao" placeholder="Selecione">
             <ion-select-option *ngFor="let tipo of servico.listaTipoPlanejamentoGestacao" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>MAC utilizado antes da gestação:</ion-label>
-          <ion-select multiple="true" formControlName="mac_gestacao" placeholder="Selecione">
+          <ion-select multiple="true" formControlName="ref_mac_gestacao" placeholder="Selecione">
             <ion-select-option *ngFor="let tipo of servico.listaTipoMAC" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
           </ion-select>
         </ion-item>

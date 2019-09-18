@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()"><ion-icon size="large" slot="start" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Cadastrar Bebê</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="bebeForm" (ngSubmit)="salvar()">
+    <ion-card>
+      <ion-item>
+        <ion-label>Desfecho</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_desfecho_bebe" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTipoDesfecho" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Gênero</ion-label>
+        <ion-select interface="popover" formControlName="id_genero" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTipoGenero" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data Nascimento: </ion-label>
+        <ion-input type="date" formControlName="dt_nascimento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Local Nascimento</ion-label>
+        <ion-input formControlName="local_nascimento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nome Completo</ion-label>
+        <ion-input formControlName="nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Número Bebê</ion-label>
+        <ion-input formControlName="numero"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Médico atendimento</ion-label>
+        <ion-input formControlName="pediatra"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo de Parto</ion-label>
+        <ion-select interface="popover" formControlName="id_tipo_parto" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaTipoParto" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Problemas no Parto</ion-label>
+        <ion-select interface="popover" formControlName="problema_parto" placeholder="Selecione">
+          <ion-select-option *ngFor="let tipo of servico.listaProblemaParto" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" type="submit" [disabled]="bebeForm.invalid">
+        Próximo
+      </ion-button>
+    </ion-card>
+  </form>
+</ion-content>

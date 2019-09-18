@@ -12,17 +12,35 @@
     <ion-card>
       <ion-item>
         <ion-label>Desfecho: </ion-label>
-        <ion-select formControlName="id_tipo_desfecho" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="id_tipo_desfecho" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaTipoDesfecho" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>
+      
+      <ion-card *ngIf="gestacaoForm.value.id_tipo_desfecho == 0">
+        <ion-item>
+          <ion-label>Motivo Desfecho</ion-label>
+          <ion-select interface="popover" formControlName="id_motivo_desfecho" placeholder="Selecione">
+            <ion-select-option *ngFor="let tipo of servico.listaMotivoDesfecho" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Observações desfecho</ion-label>
+          <ion-input formControlName="desfecho_obs"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Data desfecho: </ion-label>
+          <ion-input type="date" formControlName="dt_registro_desfecho"></ion-input>
+        </ion-item>
+      </ion-card>
+
       <ion-item>
         <ion-label position="floating">Número da gestação atual</ion-label>
         <ion-input formControlName="numero_gestacao"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Tipo de Parto</ion-label>
-        <ion-select formControlName="id_tipo_parto_planejado" placeholder="Selecione">
+        <ion-select interface="popover" formControlName="id_tipo_parto_planejado" placeholder="Selecione">
           <ion-select-option *ngFor="let tipo of servico.listaTipoParto" [value]="tipo.id">{{ tipo.descricao }}</ion-select-option>
         </ion-select>
       </ion-item>

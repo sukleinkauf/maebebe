@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BuscaMaeService } from '../../../../services/busca/busca-mae.service';
 import { Location } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-por-mae',
@@ -12,16 +13,27 @@ export class PorMaePage implements OnInit {
 
   public gestacoes: any = []
   private mae: any = null
+  public carregando: boolean = false
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private maeServico: BuscaMaeService
+    private maeServico: BuscaMaeService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
     
+  }
+
+  private async mostrarMensagem(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'middle'
+    });
+    toast.present();
   }
 
   ionViewWillEnter() {
@@ -32,11 +44,17 @@ export class PorMaePage implements OnInit {
   }
 
   async carregarMae(id) {
+    this.carregando = true
     this.mae = await this.maeServico.buscarPorId(id)
+    this.carregando = false
   }
 
   async carregarGestacoes(id) {
+    this.carregando = true
     this.gestacoes = await this.maeServico.buscarGestacaoPorMae(id)
+    this.carregando = false
+    if(this.gestacoes.length == 0)
+      this.mostrarMensagem("Nenhuma gestação cadastrada")
   }
 
   voltar() {
@@ -44,7 +62,7 @@ export class PorMaePage implements OnInit {
   }
 
   abrirCadastroGestacao() {
-    this.router.navigateByUrl("/mae/:id/gestacao/cadastro".replace(":id", this.mae.id))
+    this.router.navigateByUrl("/mae/:id_mae/gestacao/cadastro".replace(":id_mae", this.mae.id))
   }
   
   abrirEdicaoGestacao(gestacao: { id: number }) {
@@ -52,7 +70,6 @@ export class PorMaePage implements OnInit {
   }
 
   abrirListagemBebes(gestacao: { id_gestacao: number }) {
-    console.log(this.mae)
     this.router.navigateByUrl("mae/" + this.mae.id + "/gestacao/" + gestacao.id_gestacao + '/bebe')
   }
 
