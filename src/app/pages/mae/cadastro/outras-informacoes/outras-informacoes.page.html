@@ -10,10 +10,12 @@
 <ion-content>
   <form [formGroup]="maeForm" (ngSubmit)="salvar()">
     <ion-card>
-      <ion-item>
-        <ion-label position="floating">Escolaridade:</ion-label>
-        <ion-input formControlName="escolaridade"></ion-input>
-      </ion-item>
+        <ion-item>
+            <ion-label>Escolaridade:</ion-label>
+            <ion-select formControlName="escolaridade" placeholder="Selecione">
+              <ion-select-option *ngFor="let escolaridade of servico.escolaridades" [value]="escolaridade.id">{{ escolaridade.descricao }}</ion-select-option>
+            </ion-select>
+        </ion-item>
       <ion-item>
         <ion-label position="floating">Trabalha Fora:</ion-label>
         <ion-input formControlName="trabalhaFora"></ion-input>
@@ -27,8 +29,10 @@
         <ion-input formControlName="dataRetorno"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Renda Mensal Familiar:</ion-label>
-        <ion-input formControlName="rendaMensalFamiliar"></ion-input>
+          <ion-label>Renda Mensal Familiar:</ion-label>
+          <ion-select formControlName="rendaMensalFamiliar" placeholder="Selecione">
+            <ion-select-option *ngFor="let renda of servico.rendaFamiliar" [value]="renda.id">{{ renda.descricao }}</ion-select-option>
+          </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Número de Moradores da Casa:</ion-label>

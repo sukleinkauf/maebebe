@@ -15,8 +15,10 @@
             <ion-input formControlName="cep"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Estado:</ion-label> 
-            <ion-input formControlName="estado"></ion-input>
+              <ion-label>Estado:</ion-label>
+              <ion-select formControlName="estado" placeholder="Selecione">
+                <ion-select-option *ngFor="let estado of servico.estados" [value]="estado.id_estado">{{ estado.nome_estado }}</ion-select-option>
+              </ion-select>
           </ion-item>
           <ion-item>
               <ion-label position="floating">Cidade:</ion-label> 
@@ -43,8 +45,10 @@
               <ion-input formControlName="pontoReferencia"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label position="floating">Moradia:</ion-label> 
-              <ion-input formControlName="moradia"></ion-input>
+              <ion-label>Moradia:</ion-label>
+              <ion-select formControlName="moradia" placeholder="Selecione">
+                <ion-select-option *ngFor="let moradia of servico.moradias" [value]="moradia.id">{{ moradia.descricao }}</ion-select-option>
+              </ion-select>
           </ion-item>
       <ion-button expand="block" color="primary" type="submit" [disabled]="maeForm.invalid">
         Próximo
